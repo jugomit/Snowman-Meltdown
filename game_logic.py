@@ -33,7 +33,11 @@ def play_game():
         display_game_state(mistakes, secret_word, guessed_letters)
         guess = input("Guess a letter: ").lower()
         print("You guessed:", guess)
-        if guess in secret_word:
+        if len(guess) > 1:
+            print("Enter only one letter")
+        elif not guess.isalpha():
+            print("You must enter a letter!")
+        elif guess in secret_word:
             guessed_letters.append(guess)
         else:
             mistakes += 1
@@ -47,7 +51,6 @@ def play_game():
         if word_complete == True:
             print("You guessed the word correctly")
             break
-
-        if mistakes == 3:
+        elif mistakes == 3:
             print("Snowman melted")
             break
